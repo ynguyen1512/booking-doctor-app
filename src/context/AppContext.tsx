@@ -5,6 +5,7 @@ import type { DoctorRESP } from "../data/doctors/doctors.response";
 
 interface AppContextType {
   doctors: DoctorRESP[];
+  currencySymbol: string;
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -17,7 +18,8 @@ interface AppContextProviderProps {
 const AppContextProvider: React.FC<AppContextProviderProps> = ({
   children,
 }) => {
-  const value: AppContextType = { doctors };
+  const currencySymbol = "$";
+  const value: AppContextType = { doctors, currencySymbol };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

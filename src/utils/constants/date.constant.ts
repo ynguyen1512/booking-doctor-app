@@ -1,0 +1,7 @@
+export const SUNDAY = 'SUN'
+export const MONDAY = 'MON'
+export const TUESDAY = 'TUE'
+export const WEDNESDAY = 'WED'
+export const THURSDAY = 'THU'
+export const FRIDAY = 'FRI'
+export const SATURDAY = 'SAT'
