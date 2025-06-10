@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets.ts";
+import { AppContext } from "../context/AppContext.tsx";
 const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState<boolean>(false);
-  const [token, setToken] = useState<boolean>(true);
+  const context = useContext(AppContext);
+
+  if (!context) {
+    throw new Error("TopDoctors must be used within an AppContextProvider");
+  }
+
+  const { token, setToken } = context;
+
+  const logout = () => {
+    setToken(false)
+    localStorage.removeItem('token')
+  }
 
   return (
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
@@ -52,7 +64,7 @@ const Navbar = () => {
                   My Appointments
                 </p>
                 <p
-                  onClick={() => setToken(false)}
+                  onClick={() => logout()}
                   className="hover:text-black cursor-pointer"
                 >
                   Logout
